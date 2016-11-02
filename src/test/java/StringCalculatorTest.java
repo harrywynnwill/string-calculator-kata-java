@@ -8,7 +8,17 @@ public class StringCalculatorTest extends TestCase {
     }
 
 
-  public void testTakesAnEmpty() throws Exception {
-    assertEquals(0, calc.add(""));
+  // public void testTakesAnEmpty() throws Exception {
+  //   assertEquals(0, calc.add(""));
+  // }
+  //
+  //  public void testTakesOneNumber() throws Exception {
+  //   assertEquals(1, calc.add("1"));
+  // }
+
+  public void testTakesTwoNumbers() throws Exception {
+    assertEquals(3, calc.add("1, 2"));
   }
+
+
 }
