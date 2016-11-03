@@ -1,4 +1,5 @@
 import java.util.stream.*;
+import java.util.Arrays;
 
 public class StringCalculator {
 
@@ -10,6 +11,7 @@ public class StringCalculator {
       stringConvertor(numbers);
     if(isNegative(digits))
       throw new IllegalArgumentException("No Negative numbers");
+    digits = removeAboveOneThousand(digits);  
     int total = totaller(digits);
     return total;
   }
@@ -37,8 +39,10 @@ public class StringCalculator {
     return negatives;
   }
 
-  public void removeAboveOneThousand(int[] digits){
-    
+  public int[] removeAboveOneThousand(int[] digits){
+    int[] removed = Arrays.stream(digits)
+      .filter(e -> e < 1000).toArray();
+    return removed;
   }
 
 

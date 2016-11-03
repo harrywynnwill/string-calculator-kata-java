@@ -49,10 +49,6 @@ public class StringCalculatorTest extends TestCase {
     assertEquals(6, calc.add("1,\n2,3"));
   }
 
-  // public void testNegativeNumber() throws Exception {
-  //
-  //   assertEquals()
-  // }
   @Rule
   public ExpectedException thrown = ExpectedException.none();
 
