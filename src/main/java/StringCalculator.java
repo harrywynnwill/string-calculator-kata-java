@@ -5,16 +5,18 @@ public class StringCalculator {
   private int[] digits;
 
   public int add(String numbers){
-    // if(empty(numbers))
-
-      return 0;
+    if(empty(numbers))
+    return 0;
+      stringConvertor(numbers);
+    if(isNegative(digits))
+      throw new IllegalArgumentException("No Negative numbers");
+    int total = totaller(digits);
+    return total;
   }
 
   private boolean empty(String numbers){
     return numbers == "";
   }
-
-
 
   public int[] stringConvertor(String numbers){
     String[] numbersString = numbers.split("\\s*(=>|,|\\s)\\s*");
@@ -24,5 +26,20 @@ public class StringCalculator {
     }
     return digits;
   }
+
+  public int totaller(int[] digits){
+    int sum = IntStream.of(digits).sum();
+    return sum;
+  }
+
+  public boolean isNegative(int[] digits) {
+    boolean negatives = IntStream.of(digits).anyMatch(x -> x < 0);
+    return negatives;
+  }
+
+  public void removeAboveOneThousand(int[] digits){
+    
+  }
+
 
 }
