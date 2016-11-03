@@ -71,6 +71,9 @@ public class StringCalculatorTest extends TestCase {
     assertArrayEquals(oneThousandDigitsRemoved, calc.removeAboveOneThousand(oneThousandDigits));
   }
 
+  public void testCanAcceptDelimetersOfAnyLength() {
+      assertEquals(6, calc.add("//[***]\n1***2***3"));
+  }
 
 
 }
