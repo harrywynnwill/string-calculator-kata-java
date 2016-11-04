@@ -14,7 +14,7 @@ public class StringCalculatorTest extends TestCase {
    private int[] oneThousandDigits = {1000, 2};
    private int[] oneThousandDigitsRemoved = {2};
    private String delilmeter = "//[***]\n1***2***3";
-   private String[] delilmiterArray = {"//[***]\n1***2***3"};
+   private String[] delilmiterArray = {"//[***]\n1***2***3","3"};
 
 
 

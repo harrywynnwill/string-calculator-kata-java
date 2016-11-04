@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.*;
 
 
+
 public class StringCalculator {
 
   private int[] digits;
@@ -73,17 +74,18 @@ public class StringCalculator {
   //   String[] removedDelimeter = ArrayUtils.removeElement(stringNumbers, 0);
   // }
 
-  public String[] removeDelimeters(String[] numbersString) {
+  public static String[] removeDelimeters(String[] numbersString) {
     for (int digit = 0; digit < numbersString.length; digit++){
       // System.out.println(numbersString[digit]);
     }
-    String[] removedDelimeters = Arrays.stream(numbersString)
-      .filter(e -> e != "//[***]").toArray(String[]::new);
+    numbersString = ArrayUtils.removeIf(s -> s.contains("//[***]"));
 
-      for (int digit = 0; digit < removedDelimeters.length; digit++){
-        System.out.println(removedDelimeters[digit]);
+    //  .filter(e -> e == "//[***]").toArray(String[]::new);
+
+      for (int digit = 0; digit < numbersString.length; digit++){
+        System.out.println(numbersString[digit]);
       }
-    return removedDelimeters;
+    return numbersString;
   }
 
 }
