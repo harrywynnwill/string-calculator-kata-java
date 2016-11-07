@@ -85,10 +85,15 @@ public class StringCalculatorTest extends TestCase {
   // public void testRemoveNumbersAboveOneThousand() {
   //   assertArrayEquals(oneThousandDigitsRemoved, calc.removeAboveOneThousand(oneThousandDigits));
   // }
+    public void testIsDelimiter() {
+      String[] split = calc.stringSplitter("//[***]\n1***2***3");
+      assertEquals(true, calc.isDelimiter(split));
+    }
 
-  // public void testCanAcceptdelimitersOfAnyLength() {
-  //     assertEquals(6, calc.add("//[***]\n1***2***3"));
-  // }
+
+    public void testCanAcceptdelimitersOfAnyLength() {
+        assertEquals(6, calc.add("//[***]\n1***2***3"));
+    }
     public void testRemoveDelimiters(){
       String[] delimitedTest = calc.stringSplitter(delilmeter);
       assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimiter(delimitedTest));
@@ -102,7 +107,7 @@ public class StringCalculatorTest extends TestCase {
 
     public void testRemoveDelimitersFromString() {
       String[] delimitedTest = calc.stringSplitter(delilmeter);
-      String delimiter =  calc.whichDelimiter(delimitedTest);
+      // String delimiter =  calc.whichDelimiter(delimitedTest);
 
       assertArrayEquals(delilmiterArrayRemovedFromString, calc.removeDelimiterFromString(delimitedTest));
     }
