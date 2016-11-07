@@ -17,6 +17,8 @@ public class StringCalculatorTest extends TestCase {
    private String delilmeter = "//[***]\n1***2***3";
    private String[] delilmiterArray = {"//[***]\n1***2***3"};
    private String[] delilmiterArrayRemoved = {"1***2***3"};
+   private String[] delilmiterArrayRemovedFromString = {"123"};
+
 
 
 
@@ -64,8 +66,8 @@ public class StringCalculatorTest extends TestCase {
   //   calc.add("-1,2,3");
   // }
   //
-  // public void testRemoveDelimeter(){
-  //   assertEquals(delilmiter, calc.removeDelimeter("1***2***3"))
+  // public void testRemovedelimiter(){
+  //   assertEquals(delilmiter, calc.removedelimiter("1***2***3"))
   // }
   //
   // public void testStringSplitter() {
@@ -84,21 +86,25 @@ public class StringCalculatorTest extends TestCase {
   //   assertArrayEquals(oneThousandDigitsRemoved, calc.removeAboveOneThousand(oneThousandDigits));
   // }
 
-  // public void testCanAcceptDelimetersOfAnyLength() {
+  // public void testCanAcceptdelimitersOfAnyLength() {
   //     assertEquals(6, calc.add("//[***]\n1***2***3"));
   // }
-    public void testRemoveDelimeters(){
+    public void testRemoveDelimiters(){
       String[] delimitedTest = calc.stringSplitter(delilmeter);
-      // for ( int i =0 ; i < delimitedTest.length; i++){
-      //
-      //   System.out.println(delimitedTest[i]);
-      // }
+      assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimiter(delimitedTest));
+    }
 
-      System.out.println(delimitedTest[0]);
-      System.out.println(delimitedTest[1]);
+    public void testWhichDelimiter(){
+      String[] delimitedTest = calc.stringSplitter(delilmeter);
 
-      System.out.println(delimitedTest.length);
-      assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimeter(delimitedTest));
+      assertEquals("***", calc.whichDelimiter(delimitedTest));
+    }
+
+    public void testRemoveDelimitersFromString() {
+      String[] delimitedTest = calc.stringSplitter(delilmeter);
+      String delimiter =  calc.whichDelimiter(delimitedTest);
+
+      assertArrayEquals(delilmiterArrayRemovedFromString, calc.removeDelimiterFromString(delimitedTest));
     }
 
 
