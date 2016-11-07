@@ -7,6 +7,7 @@ import java.util.Arrays;
 import org.junit.rules.ExpectedException;
 import org.junit.Rule;
 import org.junit.Test;
+import org.apache.commons.lang3.ArrayUtils;
 public class StringCalculatorTest extends TestCase {
    private StringCalculator calc;
    private int[] digits = {1,2};
@@ -14,7 +15,9 @@ public class StringCalculatorTest extends TestCase {
    private int[] oneThousandDigits = {1000, 2};
    private int[] oneThousandDigitsRemoved = {2};
    private String delilmeter = "//[***]\n1***2***3";
-   private String[] delilmiterArray = {"//[***]\n1***2***3","3"};
+   private String[] delilmiterArray = {"//[***]\n1***2***3"};
+   private String[] delilmiterArrayRemoved = {"1***2***3"};
+
 
 
 
@@ -85,9 +88,17 @@ public class StringCalculatorTest extends TestCase {
   //     assertEquals(6, calc.add("//[***]\n1***2***3"));
   // }
     public void testRemoveDelimeters(){
-      String[] delimited = calc.stringSplitter(delilmeter);
+      String[] delimitedTest = calc.stringSplitter(delilmeter);
+      // for ( int i =0 ; i < delimitedTest.length; i++){
+      //
+      //   System.out.println(delimitedTest[i]);
+      // }
 
-      assertArrayEquals(delimited, calc.removeDelimeters(delilmiterArray));
+      System.out.println(delimitedTest[0]);
+      System.out.println(delimitedTest[1]);
+
+      System.out.println(delimitedTest.length);
+      assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimeter(delimitedTest));
     }
 
 

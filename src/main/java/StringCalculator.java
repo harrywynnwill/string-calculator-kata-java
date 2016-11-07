@@ -1,13 +1,13 @@
 import java.util.stream.*;
 import java.util.Arrays;
 import java.util.*;
-
+import org.apache.commons.lang3.ArrayUtils;
 
 
 public class StringCalculator {
 
   private int[] digits;
-  private String[] numbersString;
+  private static String[] numbersString;
   // set a boolean if delilmiter??
 
   public int add(String numbers){
@@ -15,7 +15,7 @@ public class StringCalculator {
       return 0;
     stringSplitter(numbers);
     if(isDelimeter(numbersString))
-      removeDelimeters(numbersString);
+      removeDelimeter(numbersString);
       stringConvertor(numbers);
     if(isNegative(digits))
       throw new IllegalArgumentException("No Negative numbers");
@@ -66,26 +66,42 @@ public class StringCalculator {
   public String[] stringSplitter(String numbers){
     numbersString = numbers.split("\\s*(=>|,|\\s)\\s*");
     // System.out.println(numbersString[0]);
+    // for ( int i =0 ; i < numbersString.length; i++){
+    //
+    //   System.out.println(numbersString[i]);
+    // }
 
     return numbersString;
   }
 
-  // public String[] removeDelimeter(String[] stringNumbers ) {
-  //   String[] removedDelimeter = ArrayUtils.removeElement(stringNumbers, 0);
-  // }
+  public String[] removeDelimeter(String[] stringNumbers ) {
+    // String[] removedDelimeter = ArrayUtils.removeElement(stringNumbers, 0);
+    String[] removedDelimeter = Arrays.stream(stringNumbers)
+      .filter(e -> !e.equals("//[***]")).toArray(String[]::new);
 
-  public static String[] removeDelimeters(String[] numbersString) {
-    for (int digit = 0; digit < numbersString.length; digit++){
-      // System.out.println(numbersString[digit]);
+
+    for (int digit = 0; digit < removedDelimeter.length; digit++){
+       System.out.println(removedDelimeter[digit]);
+     }
+  
+     return removedDelimeter;
+
+
     }
-    numbersString = ArrayUtils.removeIf(s -> s.contains("//[***]"));
 
-    //  .filter(e -> e == "//[***]").toArray(String[]::new);
-
-      for (int digit = 0; digit < numbersString.length; digit++){
-        System.out.println(numbersString[digit]);
-      }
-    return numbersString;
-  }
+  // public static String[] removeDelimeters(String[] numbersString) {
+  //   for (int digit = 0; digit < numbersString.length; digit++){
+  //     System.out.println(numbersString[digit]);
+  //   }
+  //  numbersString = ArrayUtils.remove(numbersString, 0);
+  //  //removeElement(numbersString,"//[***]");
+  //
+  //   //  .filter(e -> e == "//[***]").toArray(String[]::new);
+  //
+  //     for (int digit = 0; digit < numbersString.length; digit++){
+  //       System.out.println(numbersString[digit]);
+  //     }
+  //   return numbersString;
+  // }
 
 }
