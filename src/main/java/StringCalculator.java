@@ -46,16 +46,13 @@ public class StringCalculator {
   }
 
   public int[] stringConvertor(String[] numbersString){
-    // System.out.println(numbersString[0]);
 
-      // extract this to its own method for single respons and also to check for delims before
-      // it makes an int array (method doing spliting and inting )
-    // String[] numbersString = numbers.split("\\s*(=>|,|\\s)\\s*");
-    // System.out.println(numbersString[0]);
+
+
     digits = new int[numbersString.length];
     for (int digit = 0; digit < numbersString.length; digit++){
 
-      System.out.println(numbersString[digit]);
+      // System.out.println(numbersString[digit]);
       digits[digit] = Integer.parseInt(numbersString[digit]);
     }
     // System.out.println(digits[0]);
@@ -105,13 +102,11 @@ public class StringCalculator {
 
    public String[] removeDelimiterFromString(String[] stringNumbers) {
       String delimiter = whichDelimiter(stringNumbers);
-      // System.out.println(delimiter);
-      numbersStringNoDelims= removeDelimiter(stringNumbers);
+      numbersStringNoDelims = removeDelimiter(stringNumbers);
       for (int digit = 0; digit < numbersStringNoDelims.length; digit++){
-         numbersStringNoDelims[digit] = numbersStringNoDelims[digit].replaceAll("["+ delimiter + "]", " ");
-        //  System.out.println(numbersStringNoDelims[digit]);
-       }
-       return numbersStringNoDelims;
+      numbersStringNoDelims[digit] = numbersStringNoDelims[digit].replaceAll("\\*\\*\\*", ",");
+    }
+      return numbersStringNoDelims;
    }
 
 

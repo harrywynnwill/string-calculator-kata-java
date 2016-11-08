@@ -17,7 +17,7 @@ public class StringCalculatorTest extends TestCase {
    private String delilmeter = "//[***]\n1***2***3";
    private String[] delilmiterArray = {"//[***]\n1***2***3"};
    private String[] delilmiterArrayRemoved = {"1***2***3"};
-   private String[] delilmiterArrayRemovedFromString = {"123"};
+   private String[] delilmiterArrayRemovedFromString = {"1,2,3"};
 
 
 
@@ -40,9 +40,9 @@ public class StringCalculatorTest extends TestCase {
   //   assertEquals(3, calc.add("1, 2"));
   // }
   //
-  // public void testStringConverter() throws Exception {
-  //   assertArrayEquals(digits, calc.stringConvertor("1,2"));
-  // }
+  public void testStringConverter() throws Exception {
+    assertArrayEquals(digits, calc.stringConvertor("1,2"));
+  }
   //
   // public void testTotaller() throws Exception {
   //   assertEquals(3, calc.totaller(digits));
@@ -75,7 +75,6 @@ public class StringCalculatorTest extends TestCase {
   // }
   //
   // public void testIgnoresNumbersAboveOneThousand() {
-  //   assertEquals(2, calc.add("1000,2"));
   // }
   //
   // public void testIsNegative() {
@@ -85,25 +84,25 @@ public class StringCalculatorTest extends TestCase {
   // public void testRemoveNumbersAboveOneThousand() {
   //   assertArrayEquals(oneThousandDigitsRemoved, calc.removeAboveOneThousand(oneThousandDigits));
   // }
-    public void testIsDelimiter() {
-      String[] split = calc.stringSplitter("//[***]\n1***2***3");
-      assertEquals(true, calc.isDelimiter(split));
-    }
+    // public void testIsDelimiter() {
+    //   String[] split = calc.stringSplitter("//[***]\n1***2***3");
+    //   assertEquals(true, calc.isDelimiter(split));
+    // }
 
 
     public void testCanAcceptdelimitersOfAnyLength() {
         assertEquals(6, calc.add("//[***]\n1***2***3"));
     }
-    public void testRemoveDelimiters(){
-      String[] delimitedTest = calc.stringSplitter(delilmeter);
-      assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimiter(delimitedTest));
-    }
+    // public void testRemoveDelimiters(){
+    //   String[] delimitedTest = calc.stringSplitter(delilmeter);
+    //   assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimiter(delimitedTest));
+    // }
 
-    public void testWhichDelimiter(){
-      String[] delimitedTest = calc.stringSplitter(delilmeter);
-
-      assertEquals("***", calc.whichDelimiter(delimitedTest));
-    }
+    // public void testWhichDelimiter(){
+    //   String[] delimitedTest = calc.stringSplitter(delilmeter);
+    //
+    //   assertEquals("***", calc.whichDelimiter(delimitedTest));
+    // }
 
     public void testRemoveDelimitersFromString() {
       String[] delimitedTest = calc.stringSplitter(delilmeter);
