@@ -18,6 +18,7 @@ public class StringCalculatorTest extends TestCase {
    private String[] delilmiterArray = {"//[***]\n1***2***3"};
    private String[] delilmiterArrayRemoved = {"1***2***3"};
    private String[] delilmiterArrayRemovedFromString = {"1,2,3"};
+   private String[] numbersString = {"1,2"};
 
 
 
@@ -27,27 +28,26 @@ public class StringCalculatorTest extends TestCase {
       calc = new StringCalculator();
     }
 
-  //
-  // public void testTakesAnEmpty() throws Exception {
-  //   assertEquals(0, calc.add(""));
-  // }
-  //
-  // public void testTakesOneNumber() throws Exception {
-  //   assertEquals(1, calc.add("1"));
-  // }
-  //
-  // public void testTakesTwoNumbers() throws Exception {
-  //   assertEquals(3, calc.add("1, 2"));
-  // }
-  //
-  public void testStringConverter() throws Exception {
-    assertArrayEquals(digits, calc.stringConvertor("1,2"));
-  }
-  //
-  // public void testTotaller() throws Exception {
-  //   assertEquals(3, calc.totaller(digits));
-  // }
-  //
+    public void testTakesAnEmpty() throws Exception {
+      assertEquals(0, calc.add(""));
+    }
+
+    public void testTakesOneNumber() throws Exception {
+      assertEquals(1, calc.add("1"));
+    }
+
+    public void testTakesTwoNumbers() throws Exception {
+      assertEquals(3, calc.add("1, 2"));
+    }
+
+    public void testStringConverter() throws Exception {
+      assertArrayEquals(digits, calc.stringConvertor(numbersString));
+    }
+
+    public void testTotaller() throws Exception {
+      assertEquals(3, calc.totaller(digits));
+    }
+
   // public void testHandlesUnknowNumbers() throws Exception {
   //   assertEquals(15, calc.add("1,2,3,4,5"));
   // }

@@ -2,7 +2,7 @@ import java.util.stream.*;
 import java.util.Arrays;
 import java.util.*;
 import org.apache.commons.lang3.ArrayUtils;
-// import java.util.ArrayList;
+
 
 
 public class StringCalculator {
@@ -26,14 +26,8 @@ public class StringCalculator {
 
 
     if(isDelimiter(numbersString))
-
       numbersStringNoDelims= removeDelimiterFromString(numbersString);
-      // for ( int i =0 ; i < numbersStringNoDelims.length; i++){
-      //
-      //   System.out.println(numbersStringNoDelims[i]);
-      // }
-
-    stringConvertor(numbersStringNoDelims);
+      stringConvertor(numbersStringNoDelims);
     if(isNegative(digits))
       throw new IllegalArgumentException("No Negative numbers");
     digits = removeAboveOneThousand(digits);
@@ -46,18 +40,27 @@ public class StringCalculator {
   }
 
   public int[] stringConvertor(String[] numbersString){
+    String numbers = numbersString[0];
+    System.out.println(numbers);
+
+    String[] items = numbers.split(",");
+    for (int digit = 0; digit < items.length; digit++){
+
+       System.out.println(items[digit]);
+
+    }
 
 
-
-    digits = new int[numbersString.length];
-    for (int digit = 0; digit < numbersString.length; digit++){
+    digits = new int[items.length];
+    for (int digit = 0; digit < items.length; digit++){
 
       // System.out.println(numbersString[digit]);
-      digits[digit] = Integer.parseInt(numbersString[digit]);
+      digits[digit] = Integer.parseInt(items[digit]);
     }
     // System.out.println(digits[0]);
     return digits;
   }
+
   public String[] stringSplitter(String numbers){
     numbersString = numbers.split("\\s*(=>|,|\\s)\\s*");
     return numbersString;
