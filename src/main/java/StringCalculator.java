@@ -15,22 +15,25 @@ public class StringCalculator {
   public int add(String numbers){
     if(isEmpty(numbers))
       return 0;
-    numbersString = stringSplitter(numbers);
 
 
+    for ( int i =0 ; i < numbersString.length; i++){
 
-    // for ( int i =0 ; i < numbersString.length; i++){
-    //
-    //   System.out.println(numbersString[i]);
-    // }
+      System.out.println(numbersString[i]);
+    }
 
 
-    if(isDelimiter(numbersString))
+    if(isDelimiter(numbersString)){
       numbersStringNoDelims= removeDelimiterFromString(numbersString);
       stringConvertor(numbersStringNoDelims);
+    }
     if(isNegative(digits))
       throw new IllegalArgumentException("No Negative numbers");
     digits = removeAboveOneThousand(digits);
+
+    numbersString = stringSplitter(numbers);
+    stringConvertor(numbersString);
+
     int total = totaller(digits);
     return total;
   }
@@ -39,25 +42,11 @@ public class StringCalculator {
     return numbers == "";
   }
 
-  public int[] stringConvertor(String[] numbersString){
-    String numbers = numbersString[0];
-    System.out.println(numbers);
-
-    String[] items = numbers.split(",");
-    for (int digit = 0; digit < items.length; digit++){
-
-       System.out.println(items[digit]);
-
+  private int[] stringConvertor(String[] numbersString){
+    digits = new int[numbersString.length];
+    for (int digit = 0; digit < numbersString.length; digit++){
+      digits[digit] = Integer.parseInt(numbersString[digit]);
     }
-
-
-    digits = new int[items.length];
-    for (int digit = 0; digit < items.length; digit++){
-
-      // System.out.println(numbersString[digit]);
-      digits[digit] = Integer.parseInt(items[digit]);
-    }
-    // System.out.println(digits[0]);
     return digits;
   }
 
@@ -89,13 +78,12 @@ public class StringCalculator {
 
 
   public String[] removeDelimiter(String[] stringNumbers ) {
-    // String[] removeddelimiter = ArrayUtils.removeElement(stringNumbers, 0);
-
     String[] removedDelimiter = Arrays.stream(stringNumbers)
       .filter(e -> !e.equals("//[***]")).toArray(String[]::new);
-
-     return removedDelimiter;
-
+         for (int digit = 0; digit < removedDelimiter.length; digit++){
+           System.out.println(removedDelimiter[digit]);
+         }
+         return removedDelimiter;
    }
 
    public String whichDelimiter(String[] stringNumbers) {
@@ -111,23 +99,5 @@ public class StringCalculator {
     }
       return numbersStringNoDelims;
    }
-
-
-
-
-  // public static String[] removedelimiters(String[] numbersString) {
-  //   for (int digit = 0; digit < numbersString.length; digit++){
-  //     System.out.println(numbersString[digit]);
-  //   }
-  //  numbersString = ArrayUtils.remove(numbersString, 0);
-  //  //removeElement(numbersString,"//[***]");
-  //
-  //   //  .filter(e -> e == "//[***]").toArray(String[]::new);
-  //
-  //     for (int digit = 0; digit < numbersString.length; digit++){
-  //       System.out.println(numbersString[digit]);
-  //     }
-  //   return numbersString;
-  // }
 
 }
