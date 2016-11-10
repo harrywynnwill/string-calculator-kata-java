@@ -20,48 +20,50 @@ public class StringCalculatorTest extends TestCase {
    private String[] delilmiterArrayRemoved = {"1***2***3"};
    private String[] delilmiterArrayRemovedFromString = {"1,2,3"};
    private String[] numbersString = {"1","2"};
+   private String[] numbersStringThree = {"1","2","3"};
+
 
     protected void setUp() throws Exception {
       calc = new StringCalculator();
     }
 
-    // public void testTakesAnEmpty() throws Exception {
-    //   assertEquals(0, calc.add(""));
-    // }
-    //
-    // public void testTakesOneNumber() throws Exception {
-    //   assertEquals(1, calc.add("1"));
-    // }
-    //
-    // public void testTakesTwoNumbers() throws Exception {
-    //   assertEquals(3, calc.add("1, 2"));
-    // }
-    //
-    // public void testStringConverter() throws Exception {
-    //   assertArrayEquals(digits, calc.stringConvertor(numbersString));
-    // }
-    //
-    // public void testTotaller() throws Exception {
-    //   assertEquals(3, calc.totaller(digits));
-    // }
-    //
-    // public void testHandlesUnknowNumbers() throws Exception {
-    //   assertEquals(15, calc.add("1,2,3,4,5"));
-    // }
-    //
-    // public void testHandlesNewLine() throws Exception {
-    //   assertEquals(6, calc.add("1,\n2,3"));
-    // }
-    //
-    // @Rule
-    // public ExpectedException thrown = ExpectedException.none();
-    //
-    // @Test
-    // public void negativesThrow() {
-    //   thrown.expect(IllegalArgumentException.class);
-    //   thrown.expectMessage("No Negative numbers");
-    //   calc.add("-1,2,3");
-    // }
+    public void testTakesAnEmpty() throws Exception {
+      assertEquals(0, calc.add(""));
+    }
+
+    public void testTakesOneNumber() throws Exception {
+      assertEquals(1, calc.add("1"));
+    }
+
+    public void testTakesTwoNumbers() throws Exception {
+      assertEquals(3, calc.add("1, 2"));
+    }
+
+    public void testStringConverter() throws Exception {
+      assertArrayEquals(digits, calc.stringConvertor(numbersString));
+    }
+
+    public void testTotaller() throws Exception {
+      assertEquals(3, calc.totaller(digits));
+    }
+
+    public void testHandlesUnknowNumbers() throws Exception {
+      assertEquals(15, calc.add("1,2,3,4,5"));
+    }
+
+    public void testHandlesNewLine() throws Exception {
+      assertEquals(6, calc.add("1,\n2,3"));
+    }
+
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void negativesThrow() {
+      thrown.expect(IllegalArgumentException.class);
+      thrown.expectMessage("No Negative numbers");
+      calc.add("-1,2,3");
+    }
 
     public void testStringSplitter() {
       assertArrayEquals( delilmiterArray, calc.stringSplitter("//[***]\n1***2***3"));
@@ -90,23 +92,16 @@ public class StringCalculatorTest extends TestCase {
     public void testCanAcceptdelimitersOfAnyLength() {
         assertEquals(6, calc.add("//[***]\n1***2***3"));
     }
-    // public void testRemoveDelimiters(){
-    //   String[] delimitedTest = calc.stringSplitter(delilmeter);
-    //   assertArrayEquals(delilmiterArrayRemoved, calc.removeDelimiter(delimitedTest));
-    // }
 
-    // public void testWhichDelimiter(){
-    //   String[] delimitedTest = calc.stringSplitter(delilmeter);
-    //
-    //   assertEquals("***", calc.whichDelimiter(delimitedTest));
-    // }
+    public void testWhichDelimiter(){
+      String[] delimitedTest = calc.stringSplitter(delilmiter);
+      assertEquals("***", calc.whichDelimiter(delimitedTest));
+    }
 
-    // public void testRemoveDelimitersFromString() {
-    //   String[] delimitedTest = calc.stringSplitter(delilmeter);
-    //   // String delimiter =  calc.whichDelimiter(delimitedTest);
-    //
-    //   assertArrayEquals(delilmiterArrayRemovedFromString, calc.removeDelimiterFromString(delimitedTest));
-    // }
+    public void testRemoveDelimitersFromString() {
+      String[] delimitedTest = calc.stringSplitter(delilmiter);
+      assertArrayEquals(numbersStringThree, calc.removeDelimiterFromString(delimitedTest));
+    }
 
 
 

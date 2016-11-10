@@ -10,30 +10,27 @@ public class StringCalculator {
   private int[] digits;
   private String[] numbersString;
   private String[] numbersStringNoDelims;
-  // set a boolean if delilmiter??
 
   public int add(String numbers){
     if(isEmpty(numbers))
       return 0;
 
-
-    for ( int i =0 ; i < numbersString.length; i++){
-
-      System.out.println(numbersString[i]);
-    }
-
+      numbersString = stringSplitter(numbers);
 
     if(isDelimiter(numbersString)){
       numbersStringNoDelims= removeDelimiterFromString(numbersString);
       stringConvertor(numbersStringNoDelims);
     }
-    if(isNegative(digits))
+
+    if(!isDelimiter(numbersString)) {
+      stringConvertor(numbersString);
+    }
+
+    if(isNegative(digits)){
       throw new IllegalArgumentException("No Negative numbers");
+    }
+
     digits = removeAboveOneThousand(digits);
-
-    numbersString = stringSplitter(numbers);
-    stringConvertor(numbersString);
-
     int total = totaller(digits);
     return total;
   }
@@ -42,7 +39,7 @@ public class StringCalculator {
     return numbers == "";
   }
 
-  private int[] stringConvertor(String[] numbersString){
+  public int[] stringConvertor(String[] numbersString){
     digits = new int[numbersString.length];
     for (int digit = 0; digit < numbersString.length; digit++){
       digits[digit] = Integer.parseInt(numbersString[digit]);
@@ -81,7 +78,6 @@ public class StringCalculator {
     String[] removedDelimiter = Arrays.stream(stringNumbers)
       .filter(e -> !e.equals("//[***]")).toArray(String[]::new);
          for (int digit = 0; digit < removedDelimiter.length; digit++){
-           System.out.println(removedDelimiter[digit]);
          }
          return removedDelimiter;
    }
@@ -96,8 +92,10 @@ public class StringCalculator {
       numbersStringNoDelims = removeDelimiter(stringNumbers);
       for (int digit = 0; digit < numbersStringNoDelims.length; digit++){
       numbersStringNoDelims[digit] = numbersStringNoDelims[digit].replaceAll("\\*\\*\\*", ",");
-    }
-      return numbersStringNoDelims;
+      }
+      String answer = numbersStringNoDelims[0];
+      String[] answerArray = answer.split(",");
+      return answerArray;
    }
 
 }
