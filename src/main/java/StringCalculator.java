@@ -1,6 +1,5 @@
 import java.util.stream.*;
 import java.util.Arrays;
-import java.util.*;
 import org.apache.commons.lang3.ArrayUtils;
 
 
@@ -69,7 +68,9 @@ public class StringCalculator {
   }
 
   public boolean isDelimiter (String[] numbersString){
-      boolean delilmiter = numbersString[0].equals("//[***]");
+      System.out.println(numbersString[0]);
+      boolean delilmiter = numbersString[0].contains("//");
+      // boolean delilmiter = numbersString[0].equals("//[***]");
       return delilmiter;
   }
 
@@ -84,6 +85,7 @@ public class StringCalculator {
 
    public String whichDelimiter(String[] stringNumbers) {
      String delimiter = stringNumbers[0].replaceAll("[\\[\\]//]","");
+    //  System.out.println(delimiter);
      return delimiter;
    }
 
