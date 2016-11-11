@@ -6,9 +6,12 @@ import org.apache.commons.lang3.ArrayUtils;
 
 public class StringCalculator {
 
+  private String delimiter;
   private int[] digits;
   private String[] numbersString;
   private String[] numbersStringNoDelims;
+  private static final String DELIMITER = "//";
+
 
   public int add(String numbers){
     if(isEmpty(numbers))
@@ -17,7 +20,10 @@ public class StringCalculator {
       numbersString = stringSplitter(numbers);
 
     if(isDelimiter(numbersString)){
-      numbersStringNoDelims= removeDelimiterFromString(numbersString);
+      delimiter = whichDelimiter(numbersString);
+      System.out.println(delimiter);
+      numbersStringNoDelims= removeDelimiterFromString(numbersString, delimiter);
+      System.out.println(numbersStringNoDelims);
       stringConvertor(numbersStringNoDelims);
     }
 
@@ -68,34 +74,33 @@ public class StringCalculator {
   }
 
   public boolean isDelimiter (String[] numbersString){
-      System.out.println(numbersString[0]);
-      boolean delilmiter = numbersString[0].contains("//");
-      // boolean delilmiter = numbersString[0].equals("//[***]");
+      boolean delilmiter = numbersString[0].contains(DELIMITER);
       return delilmiter;
   }
 
 
   public String[] removeDelimiter(String[] stringNumbers ) {
     String[] removedDelimiter = Arrays.stream(stringNumbers)
-      .filter(e -> !e.equals("//[***]")).toArray(String[]::new);
+      .filter(e -> !e.contains(DELIMITER)).toArray(String[]::new);
          for (int digit = 0; digit < removedDelimiter.length; digit++){
          }
          return removedDelimiter;
+
    }
 
    public String whichDelimiter(String[] stringNumbers) {
      String delimiter = stringNumbers[0].replaceAll("[\\[\\]//]","");
-    //  System.out.println(delimiter);
+     System.out.println(delimiter);
      return delimiter;
    }
 
-   public String[] removeDelimiterFromString(String[] stringNumbers) {
-      String delimiter = whichDelimiter(stringNumbers);
+   public String[] removeDelimiterFromString(String[] stringNumbers, String delimiter) {
       numbersStringNoDelims = removeDelimiter(stringNumbers);
       for (int digit = 0; digit < numbersStringNoDelims.length; digit++){
-      numbersStringNoDelims[digit] = numbersStringNoDelims[digit].replaceAll("\\*\\*\\*", ",");
+      // numbersStringNoDelims[digit] = numbersStringNoDelims[digit].replaceAll(delimiter, ",");
       }
       String answer = numbersStringNoDelims[0];
+      System.out.println(answer);
       String[] answerArray = answer.split(",");
       return answerArray;
    }
